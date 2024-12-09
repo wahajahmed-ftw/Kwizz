@@ -61,6 +61,7 @@ const Cards = () => {
 
   return (
     <div className="cards-container">
+      
       {cardsData.map((card, index) => (
         <div key={index} className="card">
           <img src={card.img} alt="Kahoot!" />

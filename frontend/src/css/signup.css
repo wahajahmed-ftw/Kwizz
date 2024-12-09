@@ -35,7 +35,6 @@
 
 .error {
     display: block;
-    background-color: red;
     color: white;
     width: fit-content;
     height: 50px;
@@ -45,10 +44,9 @@
 
 .success {
     display: block;
-    background-color: lightblue;
     color: black;
     width: fit-content;
     height: 50px;
     padding: 5px;
-    margin: autofsdf;
+    margin: auto;
 }

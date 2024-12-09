@@ -4,6 +4,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import Cards from "./components/card";
 import Signup from "./components/signup";
+import Login from "./components/login";
 import "./App.css";
 
 function App() {
@@ -13,10 +14,10 @@ function App() {
 
           <Header />
           <main className="main-content">
-            <h1>Celebrate the holiday season with Kahoot!</h1>
             <Routes>
               <Route path="/" element={<Cards />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </main>
           <Footer />

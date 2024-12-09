@@ -9,6 +9,9 @@ const Header = () => {
   const handleSignupClick = () => {
     navigate("/signup"); // Navigate to the Signup component
   };
+  const handleLoginClick = () => {
+    navigate("/login"); // Navigate to the Signup component
+  };
 
   return (
     <header className="header">
@@ -22,7 +25,7 @@ const Header = () => {
         <a href="#discover">Discover</a>
       </nav>
       <div className="actions">
-        <button className="btn-login">Log in</button>
+        <button className="btn-login" onClick={handleLoginClick}>Log in</button>
         <button className="btn-login" onClick={handleSignupClick}>
           Sign up FREE
         </button>
