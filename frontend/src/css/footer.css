@@ -1,0 +1,15 @@
+.footer {
+    background-color: #e74c3c;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .footer .unwrap-btn {
+    padding: 10px 20px;
+    background: white;
+    color: #e74c3c;
+    border: none;
+    cursor: pointer;
+  }
+  

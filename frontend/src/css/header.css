@@ -1,0 +1,48 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    color: white;
+  }
+  
+  .nav-links a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+  }
+  a:hover{
+    background-color: black;
+  }
+  /* .actions .login-btn,
+  .actions .signup-btn {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    
+  } */
+
+
+.btn-login {background-image: linear-gradient(to right, #16222A 0%, #3A6073  51%, #16222A  100%)}
+.btn-login {
+    margin: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    border-radius: 10px;
+    display: inline-block;
+  }
+
+.btn-login:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+   
+
+  

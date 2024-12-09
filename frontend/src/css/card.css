@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+body{
+  font-family: 'Montserrat' ;
+}
+
+.card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 50px 50px 10px 10px;
+    background-image: linear-gradient( 111.3deg,  rgba(252,56,56,1) 11.7%, rgba(237,13,81,1) 81.7% );
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: 350px;
+    height: auto;
+    
+  }
+  
+  .card .offer {
+    font-weight: bold;
+    color: white;
+  }
+  /* .buy-btn{
+    padding: auto;
+    margin: auto;
+    font-size: larger;
+    background-color:green ;
+    color: white;
+  } */
+  img{
+    width: 100%;
+    height: 150px;
+    border-radius: 8px;
+  }
+  
+.btn-grad {background-image: linear-gradient(to right, #3CA55C 0%, #B5AC49  51%, #3CA55C  100%)}
+.btn-grad {
+    margin: auto;
+    padding:10px 20px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    border-radius: 10px;
+    display: block;
+  }
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
