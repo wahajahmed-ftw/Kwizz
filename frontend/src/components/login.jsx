@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../css/login.css";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
+    const Navigate = useNavigate();
+
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -25,16 +28,20 @@ export default function Login() {
         }
 
         try {
-            // API call to the Flask backend
-            const response = await axios.post("http://localhost:5000/login", {
-                email,
-                password,
-            });
-
+            const response = await axios.post(
+                "http://localhost:5000/login",
+                { email, password },
+                { withCredentials: true } // Include credentials in requests
+            );
+       
             // If login is successful
             setSuccess(true);
             setError("");
             alert(`Welcome, ${response.data.name}!`);
+            setTimeout(() => {
+                Navigate("/dashboard")
+            }, 1500);
+
         } catch (err) {
             // Handle errors from the backend
             setSuccess(false);
