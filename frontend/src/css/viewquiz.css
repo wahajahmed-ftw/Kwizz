@@ -1,0 +1,106 @@
+/* View Quiz specific styles */
+.view-quiz {
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #E0F2FE;
+}
+
+.view-quiz-title {
+    color: #0C4A6E;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: viewQuizSlideDown 0.5s ease-out;
+}
+
+.view-quiz-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    animation: viewQuizFadeIn 0.8s ease-out;
+}
+
+.view-quiz-question-item {
+    background-color: #BFDBFE;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(99, 102, 241, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.view-quiz-question-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 8px rgba(99, 102, 241, 0.2);
+}
+
+.view-quiz-question-number {
+    color: #1E40AF;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    font-weight: bold;
+}
+
+.view-quiz-question-text {
+    color: #0C4A6E;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.view-quiz-options-list {
+    list-style: none;
+    padding: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.view-quiz-option-item {
+    background-color: #93C5FD;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #0C4A6E;
+    transition: all 0.3s ease;
+}
+
+.view-quiz-option-item.correct {
+    background-color: #34D399;
+    color: white;
+}
+
+.view-quiz-back-button {
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    background-color: #6366F1;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-quiz-back-button:hover {
+    background-color: #4F46E5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(99, 102, 241, 0.2);
+}
+
+@keyframes viewQuizSlideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes viewQuizFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

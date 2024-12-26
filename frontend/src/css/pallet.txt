@@ -1,0 +1,48 @@
+Primary Purple
+#46178F
+
+Main brand color, headers, primary buttons
+
+Secondary Pink
+#FF3355
+
+Accents, important actions, progress indicators
+
+Success Green
+#2DB05A
+
+Correct answers, success states
+
+Warning Yellow
+#FFC844
+
+Timer, attention states
+
+Error Red
+#E21B3C
+
+Incorrect answers, error states
+
+Background Dark
+#1A1A1A
+
+Main background color
+
+Text Light
+#FFFFFF
+
+Primary text on dark backgrounds
+
+
+
+
+
+const colors = {
+    background: '#F0F4FF', // Soft blue-tinted background
+    primary: '#6366F1',    // Soft indigo
+    secondary: '#8B5CF6',  // Soft purple
+    accent: '#EC4899',     // Soft pink
+    success: '#34D399',    // Soft green
+    warning: '#FBBF24',    // Soft amber
+    text: '#4B5563',       // Soft gray for text
+  };

@@ -1,0 +1,220 @@
+.quiz-creator {
+    display: flex;
+    height: 100vh;
+    background-color: #F0F4FF;  /* Base background color */
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: #ffffff;  /* Slightly darker than main background */
+    border-right: 1px solid #E2E8F0;
+    width: 300px;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: 2px 0px 5px rgba(99, 102, 241, 0.1);
+}
+
+.sidebar h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #4B5563;  /* Soft gray text */
+}
+
+.add-question {
+    background-color: #6366F1;  /* Soft indigo */
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.add-question:hover {
+    background-color: #4F46E5;  /* Darker indigo on hover */
+}
+
+.question-preview {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background-color: #EEF2FF;  /* Very light indigo */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+}
+
+.question-preview.active {
+    background-color: #8B5CF6;  /* Soft purple */
+    color: white;
+    font-weight: bold;
+}
+
+.question-preview:hover {
+    background-color: #C7D2FE;  /* Light indigo hover */
+}
+
+/* Main Content Styling */
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+    background-color: #F0F4FF;  /* Matching quiz-creator background */
+    overflow-y: auto;
+}
+
+.quiz-header {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.quiz-title-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    outline: none;
+    margin-top: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.quiz-title-input:focus {
+    border-color: #8B5CF6;  /* Soft purple */
+}
+
+.question-editor {
+    background-color: #F8FAFC;  /* Very soft blue-white instead of pure white */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 3px 6px rgba(99, 102, 241, 0.1);
+    margin-bottom: 20px;
+}
+
+
+.question-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    outline: none;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.question-input:focus {
+    border-color: #8B5CF6;  /* Soft purple */
+}
+
+.media-placeholder {
+    background-color: #EEF2FF;  /* Very light indigo */
+    border: 2px dashed #C7D2FE;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    color: #6B7280;  /* Medium gray */
+}
+
+.media-placeholder p {
+    margin: 0;
+    font-size: 14px;
+    color: #4B5563;  /* Soft gray */
+}
+
+.upload-button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #EC4899;  /* Soft pink */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+    background-color: #DB2777;  /* Darker pink */
+}
+
+/* Options Styling */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.option-item {
+    background-color: #F8FAFC;  /* Matching question editor background */
+    padding: 15px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    box-shadow: 0px 1px 3px rgba(99, 102, 241, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.option-input {
+    width: 70%;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #E2E8F0;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.option-input:focus {
+    border-color: #8B5CF6;  /* Soft purple */
+}
+
+.correct-option-label {
+    font-size: 14px;
+    color: #4B5563;  /* Soft gray */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.submit-quiz,
+.back-dashboard {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-quiz {
+    background-color: #34D399;  /* Soft green */
+    color: white;
+}
+
+.submit-quiz:hover {
+    background-color: #10B981;  /* Darker green */
+}
+
+.back-dashboard {
+    background-color: #F43F5E;  /* Soft red */
+    color: white;
+}
+
+.back-dashboard:hover {
+    background-color: #E11D48;  /* Darker red */
+}

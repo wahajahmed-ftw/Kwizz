@@ -1,7 +1,7 @@
 // src/components/Cards.js
 import React from "react";
 import "../css/card.css";
-
+import Header from "./header";
 const Cards = () => {
   const cardsData = [
     {
@@ -40,12 +40,13 @@ const Cards = () => {
 
     },
     {
-      title: "For Businesses & Professionals",
-      description: "Host engaging year-end events with Kahoot! 360.",
-      offer: "Save over $50 on Kahoot! 360 from $25/month until December 18.",
+      title: "Kahoot+ for Teachers",
+      description: "Make classroom sessions more engaging.",
+      offer: "Save up to 50% on Kahoot+ from $3.99/month until December 18.",
       buttonText: "Buy now",
       learnMoreLink: "#",
       img: "/img/class1.jpg",
+
     },
     {
       title: "Kahoot+ for Teachers",
@@ -56,12 +57,16 @@ const Cards = () => {
       img: "/img/class1.jpg",
 
     },
+    
+    
    
   ];
 
   return (
+    <div>
+
+      <Header />
     <div className="cards-container">
-      
       {cardsData.map((card, index) => (
         <div key={index} className="card">
           <img src={card.img} alt="Kahoot!" />
@@ -77,6 +82,7 @@ const Cards = () => {
         </div>
       ))}
     </div>
+      </div>
   );
 };
 

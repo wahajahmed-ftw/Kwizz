@@ -1,0 +1,240 @@
+.dashboard {
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #E0F2FE;  /* Light sky blue base */
+}
+@import 'animate.css';
+.dashboard h1 {
+    font-size: 2.5rem;
+    color: #0C4A6E;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    animation: slideDown 0.5s ease-out;
+}
+
+.dashboard h2 {
+    font-size: 1.8rem;
+    color: #1E40AF;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    animation: slideDown 0.7s ease-out;
+}
+
+.create-quiz {
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background-color: #6366F1;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: scaleIn 0.5s ease-out;
+    box-shadow: 0 4px 6px rgba(99, 102, 241, 0.2);
+}
+
+.create-quiz:hover {
+    background-color: #4F46E5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(99, 102, 241, 0.3);
+}
+
+
+
+
+.quiz-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(99, 102, 241, 0.2);
+    background-color: #93C5FD;
+}
+
+.quiz-item h3 {
+    font-size: 1.4rem;
+    color: #1E40AF;
+    margin-bottom: 0.5rem;
+}
+
+.quiz-item p {
+    color: #0C4A6E;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.quiz-item button {
+    padding: 0.7rem 1.2rem;
+    margin-right: 0.8rem;
+    margin-bottom: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quiz-item button:nth-child(3) {  /* View Quiz button */
+    background-color: #6366F1;
+    color: white;
+}
+
+.quiz-item button:nth-child(4) {  /* Delete Quiz button */
+    background-color: #F43F5E;
+    color: white;
+}
+
+.quiz-item button:nth-child(5) {  /* Host Game button */
+    background-color: #34D399;
+    color: white;
+}
+
+.quiz-item button:hover {
+    transform: translateY(-2px);
+    filter: brightness(110%);
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.pagination-controls button {
+    padding: 0.8rem 1.5rem;
+    background-color: #6366F1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination-controls button:disabled {
+    background-color: #CBD5E1;
+    cursor: not-allowed;
+}
+
+.pagination-controls button:not(:disabled):hover {
+    background-color: #4F46E5;
+    transform: translateY(-2px);
+}
+
+.pagination-controls span {
+    color: #0C4A6E;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Loading and Error States */
+.dashboard > div:first-child {  /* Loading state */
+    text-align: center;
+    padding: 2rem;
+    color: #0C4A6E;
+    font-size: 1.2rem;
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .quiz-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .quiz-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Empty State */
+.dashboard > p {  /* "No quizzes" message */
+    text-align: center;
+    color: #0C4A6E;
+    font-size: 1.2rem;
+    margin: 2rem 0;
+    padding: 2rem;
+    background-color: #BFDBFE;
+    border-radius: 12px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+
+
+.quiz-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem auto; /* Changed to auto for horizontal centering */
+    display: grid;
+    gap: 1.5rem;
+    animation: fadeIn 0.8s ease-out;
+    max-width: 1200px; /* Added max-width for larger screens */
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-content: center;
+}
+
+/* Update quiz item styling */
+.quiz-item {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto; /* Center single items */
+    background-color: #BFDBFE;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,122 +1,154 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../css/quiz.css';
 
-const Dashboard = () => {
-    const [quizzes, setQuizzes] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-    const [currentPage, setCurrentPage] = useState(1); // Current page for pagination
-    const [totalPages, setTotalPages] = useState(1);   // Total pages for pagination
+const QuizCreator = () => {
+    const [quizTitle, setQuizTitle] = useState('');
+    const [questions, setQuestions] = useState([
+        { text: '', options: { A: '', B: '', C: '', D: '' }, correctOption: 'A' }
+    ]);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
     const navigate = useNavigate();
 
-    // Fetch quizzes when the component mounts or the current page changes
-    useEffect(() => {
-        const fetchQuizzes = async () => {
-            try {
-                const response = await axios.get(
-                    `http://localhost:5000/get-quizzes?page=${currentPage}&limit=5`,
-                    { withCredentials: true } // Include session cookies
-                );
+    const handleAddQuestion = () => {
+        setQuestions([
+            ...questions,
+            { text: '', options: { A: '', B: '', C: '', D: '' }, correctOption: 'A' }
+        ]);
+        setCurrentQuestionIndex(questions.length); // Focus on the newly added question
+    };
 
-                setQuizzes(response.data.quizzes);
-                setTotalPages(response.data.totalPages); // Set total pages for pagination
-            } catch (err) {
-                setError(err.response?.data?.message || 'Error fetching quizzes');
-            } finally {
-                setLoading(false);
-            }
+    const handleQuestionChange = (value) => {
+        if (questions[currentQuestionIndex]) {
+            const newQuestions = [...questions];
+            newQuestions[currentQuestionIndex].text = value;
+            setQuestions(newQuestions);
+        }
+    };
+
+    const handleOptionChange = (option, value) => {
+        if (questions[currentQuestionIndex]) {
+            const newQuestions = [...questions];
+            newQuestions[currentQuestionIndex].options[option] = value;
+            setQuestions(newQuestions);
+        }
+    };
+
+    const handleCorrectOptionChange = (value) => {
+        if (questions[currentQuestionIndex]) {
+            const newQuestions = [...questions];
+            newQuestions[currentQuestionIndex].correctOption = value;
+            setQuestions(newQuestions);
+        }
+    };
+
+    const handleSubmit = async () => {
+        if (!quizTitle.trim() || questions.some(q => !q.text.trim() || Object.values(q.options).some(opt => !opt.trim()))) {
+            alert("Please fill out all fields before submitting.");
+            return;
+        }
+
+        const payload = {
+            title: quizTitle,
+            questions: questions.map(q => ({
+                text: q.text,
+                options: q.options,
+                correctOption: q.correctOption
+            }))
         };
 
-        fetchQuizzes();
-    }, [currentPage]);
-
-    // View Quiz: Navigate to quiz details page
-    const handleViewQuiz = (quizId) => {
-        navigate(`/quiz/${quizId}`); // Redirect to detailed quiz page
-    };
-
-    // Delete Quiz: Remove quiz from database and update UI
-    const handleDeleteQuiz = async (quizId) => {
-        const confirmDelete = window.confirm('Are you sure you want to delete this quiz?');
-        if (!confirmDelete) return;
-
         try {
-            await axios.delete(`http://localhost:5000/delete-quiz/${quizId}`, {
-                withCredentials: true
-            });
-            setQuizzes(quizzes.filter(quiz => quiz.id !== quizId)); // Update state to reflect deletion
-            alert('Quiz deleted successfully!');
-        } catch (err) {
-            console.error('Error deleting quiz:', err);
-            alert('Failed to delete the quiz.');
+            const response = await axios.post(
+                'http://localhost:5000/create-quiz',
+                payload,
+                { withCredentials: true }
+            );
+            alert('Quiz created successfully!');
+            console.log(response.data);
+
+            setQuizTitle('');
+            setQuestions([{ text: '', options: { A: '', B: '', C: '', D: '' }, correctOption: 'A' }]);
+        } catch (error) {
+            console.error("Error creating quiz:", error.response?.data || error.message);
         }
     };
-
-    // Handle pagination
-    const handlePagination = (direction) => {
-        if (direction === 'prev' && currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        } else if (direction === 'next' && currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-        }
-    };
-
-    // Display loading indicator
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    // Display error message if fetching quizzes fails
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
 
     return (
-        <div className="dashboard">
-            <h1>Dashboard</h1>
-            <h2>Your Quizzes</h2>
-            {quizzes.length === 0 ? (
-                <p>You haven't created any quizzes yet.</p>
-            ) : (
-                <ul className="quiz-list">
-                    {quizzes.map(quiz => (
-                        <li key={quiz.id} className="quiz-item">
-                            <h3>{quiz.title}</h3>
-                            <p>Created on: {quiz.created_at}</p>
-                            <ul>
-                                {quiz.questions.map(question => (
-                                    <li key={question.id}>
-                                        <strong>Q:</strong> {question.text} | <strong>Options:</strong> {question.options.join(', ')}
-                                    </li>
-                                ))}
-                            </ul>
-                            <button onClick={() => handleViewQuiz(quiz.id)}>View Quiz</button>
-                            <button onClick={() => handleDeleteQuiz(quiz.id)}>Delete Quiz</button>
-                        </li>
-                    ))}
-                </ul>
-            )}
-
-            {/* Pagination Controls */}
-            <div className="pagination-controls">
-                <button
-                    disabled={currentPage === 1}
-                    onClick={() => handlePagination('prev')}
-                >
-                    Previous
+        <div className="quiz-creator">
+            <div className="sidebar">
+                <button className="add-question" onClick={handleAddQuestion}>
+                    Add Question
                 </button>
-                <span>Page {currentPage} of {totalPages}</span>
-                <button
-                    disabled={currentPage === totalPages}
-                    onClick={() => handlePagination('next')}
-                >
-                    Next
-                </button>
+                {questions.map((question, index) => (
+                    <div
+                        key={index}
+                        className={`question-preview ${index === currentQuestionIndex ? 'active' : ''}`}
+                        onClick={() => setCurrentQuestionIndex(index)}
+                    >
+                        {`Question ${index + 1}`}
+                    </div>
+                ))}
+            </div>
+            <div className="main-content">
+                <div className="quiz-header">
+                    <h1>Create Quiz</h1>
+                    <input
+                        type="text"
+                        className="quiz-title-input"
+                        placeholder="Quiz Title"
+                        value={quizTitle}
+                        onChange={e => setQuizTitle(e.target.value)}
+                    />
+                </div>
+                {questions[currentQuestionIndex] ? (
+                    <div className="question-editor">
+                        <input
+                            type="text"
+                            className="question-input"
+                            placeholder="Type your question here"
+                            value={questions[currentQuestionIndex]?.text || ''}
+                            onChange={e => handleQuestionChange(e.target.value)}
+                        />
+                        
+                        <div className="options-grid">
+                            {Object.keys(questions[currentQuestionIndex].options).map((option, oIndex) => (
+                                <div key={oIndex} className="option-item">
+                                    <input
+                                        type="text"
+                                        className="option-input"
+                                        placeholder={`Add answer ${option}`}
+                                        value={questions[currentQuestionIndex].options[option]}
+                                        onChange={e => handleOptionChange(option, e.target.value)}
+                                    />
+                                    <label className="correct-option-label">
+                                        <input
+                                            type="radio"
+                                            name={`correctOption`}
+                                            checked={questions[currentQuestionIndex].correctOption === option}
+                                            onChange={() => handleCorrectOptionChange(option)}
+                                        />
+                                        Correct
+                                    </label>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    <p>No question selected.</p>
+                )}
+                <div className="action-buttons">
+                    <button className="submit-quiz" onClick={handleSubmit}>
+                        Submit Quiz
+                    </button>
+                    <button className="back-dashboard" onClick={() => navigate("/dashboard")}>
+                        Back to Dashboard
+                    </button>
+                </div>
             </div>
         </div>
     );
 };
 
-export default Dashboard;
+export default QuizCreator;
